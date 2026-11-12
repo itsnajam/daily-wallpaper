@@ -1,0 +1,12 @@
+# Build outputs
+build/
+dist/
+
+# Raw generated icon source (the committed icon is app/Resources/icon.png)
+vibe_images/
+
+# macOS
+.DS_Store
+# Internal planning notes
+BRIEF*.md
+FOLLOWUP*.md

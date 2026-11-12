@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Wallpaper: fresh Bing wallpapers on your Mac</title>
+<meta name="description" content="A free, lightweight Mac menu bar app that sets a fresh Bing photo as your desktop and lock screen wallpaper. Pick landscapes, cities, beaches, wildlife or space, on your schedule. Made by najam.dev.">
+<meta name="author" content="Najam">
+<link rel="canonical" href="https://itsnajam.github.io/daily-wallpaper/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Daily Wallpaper: fresh Bing wallpapers on your Mac">
+<meta property="og:description" content="Free menu bar app. Landscapes, cities, beaches, wildlife and space from Bing, on your schedule. Syncs your lock screen too.">
+<meta property="og:image" content="https://itsnajam.github.io/daily-wallpaper/icon.png">
+<meta property="og:url" content="https://itsnajam.github.io/daily-wallpaper/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daily Wallpaper: fresh Bing wallpapers on your Mac">
+<meta name="twitter:description" content="Free menu bar app. Fresh Bing photos on your desktop and lock screen, on your schedule.">
+<meta name="twitter:image" content="https://itsnajam.github.io/daily-wallpaper/icon.png">
+<meta name="theme-color" content="#0e1420">
+<link rel="icon" href="icon.png">
+<style>
+  :root{
+    --bg:#0e1420; --panel:#151d2c; --panel2:#1b2436; --line:#26324a;
+    --text:#eef2f8; --muted:#9aa7bd; --gold:#f4b860; --gold-soft:#f7cf94;
+    --blue:#5b8cff; --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  header{padding:28px 0;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.2px}
+  .brand img{width:34px;height:34px;border-radius:8px}
+  .brand small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+  .nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+  .nav a:hover{color:var(--text)}
+
+  .hero{padding:56px 0 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .eyebrow{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  h1{font-size:44px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 18px}
+  h1 .accent{color:var(--gold-soft)}
+  .lede{color:var(--muted);font-size:18px;max-width:46ch}
+  .cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;
+    text-decoration:none;font-weight:600;font-size:15px;border:1px solid transparent}
+  .btn-primary{background:var(--gold);color:#231a08}
+  .btn-primary:hover{background:var(--gold-soft)}
+  .btn-ghost{border-color:var(--line);color:var(--text);background:var(--panel)}
+  .btn-ghost:hover{border-color:#3a4a6b}
+  .note{margin-top:16px;color:var(--muted);font-size:13px}
+
+  /* Menu mockup used as the product screenshot */
+  .shot{position:relative}
+  .menubar{height:30px;background:#0a0f18;border:1px solid var(--line);border-bottom:none;
+    border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:flex-end;padding:0 14px;gap:16px}
+  .menubar .dot{width:15px;height:15px;border-radius:4px;background:linear-gradient(135deg,#3a4a6b,#26324a)}
+  .menubar .peak{color:var(--gold-soft);font-size:13px}
+  .menu{background:var(--panel);border:1px solid var(--line);border-radius:0 0 14px 14px;
+    padding:12px;width:300px;margin-left:auto;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .thumb{height:150px;border-radius:9px;overflow:hidden;position:relative;
+    background:linear-gradient(180deg,#2b3a63 0%,#6b5a86 34%,#e79a5e 62%,#f4b860 74%,#274060 75%,#16233a 100%)}
+  .thumb::before{content:"";position:absolute;left:0;right:0;bottom:25%;height:46%;
+    background:
+      linear-gradient(135deg,transparent 49%,#1d2c47 50%) 0 0/46% 100% no-repeat,
+      linear-gradient(225deg,transparent 49%,#243657 50%) 100% 0/56% 100% no-repeat;}
+  .thumb::after{content:"";position:absolute;right:24%;top:30%;width:26px;height:26px;border-radius:50%;
+    background:#ffe6b0;box-shadow:0 0 24px 6px rgba(255,224,160,.55)}
+  .m-title{font-weight:600;font-size:14px;margin:11px 2px 2px}
+  .m-credit{color:var(--muted);font-size:11.5px;margin:0 2px 8px;line-height:1.4}
+  .m-sep{height:1px;background:var(--line);margin:7px -12px}
+  .m-item{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;border-radius:7px;font-size:13.5px}
+  .m-item:hover{background:var(--panel2)}
+  .m-item .chev{color:var(--muted)}
+  .m-item .check{color:var(--gold-soft)}
+  .m-item.dim{color:var(--muted)}
+  .m-sync{color:#7fd6a4;font-size:12.5px;padding:6px 8px}
+
+  section{padding:46px 0}
+  h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+  .sub{color:var(--muted);margin-bottom:28px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card h3{font-size:16px;font-weight:600;margin-bottom:7px}
+  .card p{color:var(--muted);font-size:14px}
+  .card .ic{font-size:20px;margin-bottom:12px;display:block}
+
+  .install{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .install ol{margin:14px 0 0 20px;color:var(--muted);font-size:15px}
+  .install li{margin:7px 0}
+  .install code{background:var(--panel2);border:1px solid var(--line);padding:2px 7px;border-radius:6px;font-size:13px;color:var(--gold-soft)}
+  .kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;font-size:12.5px;background:var(--panel2)}
+
+  .cli{margin-top:18px;color:var(--muted);font-size:14px}
+  .cli code{background:var(--panel2);border:1px solid var(--line);padding:2px 7px;border-radius:6px;font-size:13px;color:var(--gold-soft)}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;margin-top:20px;color:var(--muted);font-size:14px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--gold-soft);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;gap:34px;padding-top:36px}
+    h1{font-size:34px}
+    .grid{grid-template-columns:1fr}
+    .menu{margin:0 auto}
+    .nav{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img src="icon.png" alt="Daily Wallpaper icon">
+      <div>Daily Wallpaper<small>by najam.dev</small></div>
+    </div>
+    <nav class="nav">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/itsnajam/daily-wallpaper">GitHub</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Free &amp; open source for macOS</div>
+      <h1>Fresh Bing wallpapers on your Mac: <span class="accent">landscapes, cities and more</span>, on your schedule.</h1>
+      <p class="lede">A tiny menu bar app that picks a beautiful photo from Bing each day and sets it as your desktop and lock screen. Choose the types you love and how often it changes. No account, no tracking, no clutter.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/itsnajam/daily-wallpaper/releases/latest">Download for Mac</a>
+        <a class="btn btn-ghost" href="https://github.com/itsnajam/daily-wallpaper">View source</a>
+      </div>
+      <p class="note">macOS 14 or later. Under 5 MB. Apple Silicon and Intel.</p>
+    </div>
+
+    <div class="shot" aria-label="Preview of the Daily Wallpaper menu">
+      <div class="menubar"><span class="peak">&#9650;</span><span class="dot"></span><span class="dot"></span></div>
+      <div class="menu">
+        <div class="thumb" role="img" aria-label="A mountain lake at sunset"></div>
+        <div class="m-title">Peace among the peaks</div>
+        <div class="m-credit">Lake Braies, Dolomites, Italy (&copy; leonid_tit/Getty Images)</div>
+        <div class="m-sep"></div>
+        <div class="m-item">Next wallpaper</div>
+        <div class="m-item">Change every <span class="chev">12 hours &rsaquo;</span></div>
+        <div class="m-item">Wallpaper types <span class="chev">Landscapes &rsaquo;</span></div>
+        <div class="m-sep"></div>
+        <div class="m-item">Open at Login <span class="check">&#10003;</span></div>
+        <div class="m-sync">Lock screen: synced</div>
+        <div class="m-item dim">About Daily Wallpaper</div>
+        <div class="m-item dim">Quit</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <h2>What it does</h2>
+    <p class="sub">Everything runs in one small app. No Electron, no web views, no helper daemons.</p>
+    <div class="grid">
+      <div class="card"><span class="ic">&#127956;</span><h3>Pick your types</h3><p>Landscapes, cities &amp; architecture, beaches &amp; islands, animals &amp; wildlife, space &amp; night sky, or everything. Mix several at once.</p></div>
+      <div class="card"><span class="ic">&#9201;</span><h3>On your schedule</h3><p>Change every 1, 3, 6, 12 or 24 hours, or only when you ask. It also refreshes when your Mac wakes.</p></div>
+      <div class="card"><span class="ic">&#128274;</span><h3>Lock screen too</h3><p>Pick the photo once with Show on all Spaces and your lock screen stays on the same photo as your desktop, every change.</p></div>
+      <div class="card"><span class="ic">&#129718;</span><h3>Lightweight</h3><p>Under 5 MB on disk and near-zero CPU when idle. Only the current photo is kept, so it never fills your drive.</p></div>
+      <div class="card"><span class="ic">&#127760;</span><h3>Wider pool</h3><p>Queries several Bing markets and remembers recent photos, so a narrow choice still finds something fresh.</p></div>
+      <div class="card"><span class="ic">&#128737;</span><h3>Private &amp; free</h3><p>No ads, no analytics, no account. The only network calls are to bing.com. MIT licensed, free for everyone.</p></div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Install</h2>
+    <p class="sub">Two minutes, no Xcode required.</p>
+    <div class="install">
+      <ol>
+        <li>Download the zip and unzip it, then drag <strong>Daily Wallpaper</strong> into your Applications folder.</li>
+        <li>The app is unsigned, so the first time <strong>right-click it and choose Open</strong>, then confirm. After that it opens normally.</li>
+        <li>Click the mountain icon and pick your types and schedule. For the lock screen, pick the photo once in Wallpaper Settings (Pictures → Daily Wallpaper) with Show on all Spaces on.</li>
+      </ol>
+      <p class="cli">Prefer no app? There is a shell-script version in <code>cli/</code> with the same types and schedule: <code>./install.sh</code>, then <code>bingwall --types landscapes,cities --every 6h</code>.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div>Made by Najam &middot; <a href="https://najam.dev">najam.dev</a></div>
+    <div>Photos belong to Microsoft/Bing and their photographers. Personal wallpaper use only.</div>
+  </footer>
+</div>
+</body>
+</html>
